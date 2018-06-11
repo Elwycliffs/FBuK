@@ -10,13 +10,14 @@ Page {
 
     Flickable {
         id: flickable
+        clip: true
         anchors.fill: parent
-        contentHeight: statusUpdate.height+stories.height+posts.height+15
-
-        onFlickingChanged: {flickable.forceActiveFocus()}
+        contentHeight: layout.height
 
         Column {
+            id: layout
             anchors.fill: parent
+            height: statusUpdate.height + stories.height
             spacing: 5
 
             // Status Update Toolbar
@@ -111,11 +112,19 @@ Page {
                 Stories {anchors.fill: parent}
             }
 
-            // Public Posts Pane
-            Posts {
-                id: posts
-                Material.background: 'lightgray'
+            Page {
+                id: body
+                clip: true
                 anchors {left: parent.left; right: parent.right}
+                Material.background: 'lightgray'
+                height: posts.height
+
+                // Public Posts
+                Posts {
+                    id: posts
+                    anchors {left: parent.left; right: parent.right}
+                    onHeightChanged: {flickable.contentHeight += height}
+                }
             }
         }
     }

@@ -5,7 +5,8 @@ import QtQuick.Layouts 1.3
 import "../scripts/Icon.js" as MDiFonts
 
 Item {
-    height: postsView.height
+    id: root
+    //clip: true
 
     Component {
         id: postsDelegate
@@ -93,7 +94,7 @@ Item {
                     wrapMode: Text.Wrap
                     color: 'black'
 
-                    //Component.onCompleted: {/*console.log(pstContent.paintedWidth);*/ console.log(pstContent.paintedHeight)}
+                    onLinkActivated: {Qt.openUrlExternally(link)}
                 }
             }
 
@@ -114,17 +115,18 @@ Item {
             user:'Wycliff Kibocha'
             avaTar:'thumbs/Me.jpg'
             timestamp: '20 Minutes ago'
-            post: 'Just completed the Skeleton Facebook Design Project #codeName:FBuk <html><style type="text/css"></style><a href="http://google.com">google</a></html>'
+            post: 'Just completed this Facebook Design Skeleton Project #codeName:FBuk <html><style type="text/css"></style> <br /><br />Follow the <a href="https://github.com/Elwycliffs/FBuK">Project on Github</a></html>'
             ptype: 'Public'
             shared: false
-            graphics: ''
+            graphics: 'thumbs/Project.png'
+
         }
 
         ListElement{
             user:'Wycliff Kibocha'
             avaTar:'thumbs/Me.jpg'
             timestamp: '7 Hours ago'
-            post: 'Qt is a cross-platform application framework and widget toolkit for creating classic and embedded graphical user interfaces, and applications that run on various software and hardware platforms with little or no change in the underlying codebase, while still being a native application with native capabilities and speed.'
+            post: 'Qt is a cross-platform application framework and widget toolkit for creating classic and embedded graphical user interfaces, and applications that run on various software and hardware platforms with little or no change in the underlying codebase, while still being a native application with native capabilities and speed.<html><style type="text/css"></style> <br /><br /> Go to: <a href="https://www.qt.io/">Download Qt</a></html>'
             ptype: 'Public'
             shared: true
             graphics: 'thumbs/sourcecode.png'
@@ -134,7 +136,7 @@ Item {
             user:'The QtProject'
             avaTar:'thumbs/QtLogo.png' //einsten
             timestamp: '15 Hours ago'
-            post: 'The Material style is not a native Android style. The Material style is a 100% cross-platform Qt Quick Controls 2 style implementation that follows the Google Material Design Guidelines. The style runs on any platform, and looks more or less identical everywhere. Minor differences may occur due to differences in available system fonts and font rendering engines.'
+            post: 'The Material style is not a native Android style. The Material style is a 100% cross-platform Qt Quick Controls 2 style implementation that follows the Google Material Design Guidelines. The style runs on any platform, and looks more or less identical everywhere. Minor differences may occur due to differences in available system fonts and font rendering engines. <html><style type="text/css"></style> <br /><br /> Check it out: <a href="http://doc.qt.io/Qt-5/qtquickcontrols2-material.html#detailed-desc-material">QML Material Design</a></html>'
             ptype: 'Public'
             shared: false
             graphics: 'thumbs/QtMaterial.png' //imagine wallpaper
@@ -144,7 +146,7 @@ Item {
             user:'TheReal Einstein'
             avaTar:'thumbs/Einstein.jpg' //einsten
             timestamp: '22 Hours ago'
-            post: 'Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.'
+            post: '<html><style type="text/css"></style><center><i>"Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world."</i></center> <br /><br />Goalcast: Best of <a href="https://www.goalcast.com/2017/03/29/top-30-most-inspiring-albert-einstein-quotes/">Albert Einstein</a></html>'
             ptype: 'Public'
             shared: false
             graphics: 'thumbs/imagine.jpg' //imagine wallpaper
@@ -154,7 +156,7 @@ Item {
             user:'Wycliff Kibocha'
             avaTar:'thumbs/Me.jpg' //QtLocation Api's
             timestamp: '48 Hours ago'
-            post: 'The Location API provides a library for mapping, navigation and place information. The Qt Location API provides the developer with a set of functions to interact with maps, navigational data and places of interest. This is particularly useful when associated with current position information which can be retrieved via the QtPositioning module. With the Maps API we can associate a position with a map in various formats supplied by a backend. Then the Places API could be used to populate places on the Map or even specify the current position as a place of interest and associate it with an icon, contact details and other information.'
+            post: 'The Location API provides a library for mapping, navigation and place information. The Qt Location API provides the developer with a set of functions to interact with maps, navigational data and places of interest. This is particularly useful when associated with current position information which can be retrieved via the QtPositioning module. With the Maps API we can associate a position with a map in various formats supplied by a backend. Then the Places API could be used to populate places on the Map or even specify the current position as a place of interest and associate it with an icon, contact details and other information. <html><style type="text/css"></style> <br /><br /> Visit the <a href="https://doc-snapshots.qt.io/qt5-5.9/qtlocation-index.html">Project</a></html>'
             ptype: 'Friends'
             shared: true
             graphics: 'thumbs/QtLocation.png'
@@ -164,7 +166,7 @@ Item {
             user: "Rag'n'Bone Man"
             avaTar: 'thumbs/RagNBonePic.jpg' //Rag'n'Bone Man
             timestamp: '2 Days ago'
-            post: 'A massive thank you for going out and buying my album, streaming it and making it such a success so quickly, it means the world to me. Number 1 album... smash!'
+            post: 'A massive thank you for going out and buying my album, streaming it and making it such a success so quickly, it means the world to me. Number 1 album... <b>Smash!</b> <html><style type="text/css"></style> <br /><br />Check it out on: <a href="https://www.youtube.com/watch?v=L3wKzyIN1yk&list=PLZnU7NziykhZJhQbC-h_LCIliVMTEy8Iq">YouTube</a></html>'
             ptype: 'Public'
             shared: false
             graphics: 'thumbs/RagNBone.jpg'
@@ -188,15 +190,20 @@ Item {
         orientation: Qt.Vertical
         layoutDirection: ListView.TopToBottom
         anchors {left: parent.left; right: parent.right}
+        interactive: false
+        delegate: postsDelegate
 
         Component.onCompleted: {
-            var xHeight = 0
-            for(var child in postsView.contentItem.children){
-                xHeight += postsView.contentItem.children[child].height + 5
+            var items = postsView.count
+            var ttlHeight = 0
+
+            for(var item = 0; item < items; item++){
+                postsView.currentIndex = item
+                ttlHeight += postsView.currentItem.height+5
             }
-            postsView.height = xHeight
+            postsView.height = ttlHeight + 10
         }
 
-        delegate: postsDelegate
+        onHeightChanged: {root.height = postsView.height}
     }
 }
