@@ -1,0 +1,13 @@
+*.qmlc
+*.user
+*.md
+*.json
+*.html
+*.eot
+*.svg
+*.woff
+*.woff2
+*.scss
+components/thumbs/*.*
+
+

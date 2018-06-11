@@ -1,0 +1,40 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+	<file>qtquickcontrols2.conf</file>
+        <file>Splash.qml</file>
+	<file>Home.qml</file>
+        <file>components/Blip.qml</file>
+        <file>components/Worker.qml</file>
+	<file>components/Bars.qml</file>
+	<file>components/IcoTool.qml</file>
+	<file>components/SearchTool.qml</file>
+	<file>components/Avi.qml</file>
+	<file>components/Stories.qml</file>
+	<file>components/Posts.qml</file>
+	<file>components/PostTools.qml</file>
+	<file>components/thumbs/Me.jgp</file>
+	<file>components/thumbs/bleach41.jpg</file>
+	<file>components/thumbs/Bleach38</file>
+	<file>components/thumbs/coolKid.jpg</file>
+	<file>components/thumbs/girlNails.jgp</file>
+	<file>components/thumbs/gorgeous.jgp</file>
+	<file>components/thumbs/gorgeous2.jgp</file>
+	<file>components/thumbs/model.jgp</file>
+	<file>components/thumbs/shoe.jgp</file>
+	<file>components/thumbs/usher.jgp</file>
+	<file>components/thumbs/QtLogo.png</file>
+	<file>components/thumbs/Einstein.jpg</file>
+	<file>components/thumbs/RagNBonePic.jpg</file>
+	<file>components/thumbs/QtLocation.png</file>
+	<file>components/thumbs/imagine.jpg</file>
+	<file>components/thumbs/RagNBone.jpg</file>
+	<file>components/thumbs/QtMaterial.png</file>
+	<file>components/thumbs/sourcecode.png</file>
+        <file>icons/facebook.png</file>
+	<file>fonts/webfonts/fonts/materialdesignicons-webfont.ttf</file>
+	<file>scripts/Icon.js</file>
+	<file>android-sources/AndroidManifest.xml</file>
+	<file>pages/Homepage.qml</file>
+    </qresource>
+</RCC>
